@@ -1,0 +1,19 @@
+Group,ParamSet,AvgMeanDist,AvgStdDist,AvgRuntime
+Large-5,Balanced,2079.35,76.13,1.505
+Large-5,Focus exploitation,2354.01,52.48,0.277
+Large-5,High exploration,1681.49,35.21,12.449
+Large-6,Balanced,3695.93,0.0,2.078
+Large-6,Focus exploitation,3695.93,0.0,0.468
+Large-6,High exploration,3695.93,0.0,17.454
+Medium-3,Balanced,936.35,14.87,0.604
+Medium-3,Focus exploitation,968.63,17.84,0.13
+Medium-3,High exploration,908.75,2.48,5.016
+Medium-4,Balanced,1669.04,27.77,1.1
+Medium-4,Focus exploitation,1728.24,52.06,0.222
+Medium-4,High exploration,1613.54,10.97,9.093
+Small-1,Balanced,361.35,25.83,0.425
+Small-1,Focus exploitation,390.33,27.76,0.067
+Small-1,High exploration,339.53,11.44,2.832
+Small-2,Balanced,781.03,33.01,0.522
+Small-2,Focus exploitation,867.47,33.78,0.107
+Small-2,High exploration,703.92,10.22,4.595
