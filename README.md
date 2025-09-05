@@ -35,7 +35,9 @@ Install (local):
 2. In the notebook, make sure you load with a relative path that works for you:
 
 
-> df = pd.read_csv("customers.csv")  # not "/customers.csv"
-> df = pd.read_csv("./customers.csv")
-> df = pd.read_csv("data/customers.csv")
-> df = pd.read_csv("/content/customers.csv")
+``
+df = pd.read_csv("customers.csv")  # not "/customers.csv"
+df = pd.read_csv("./customers.csv")
+df = pd.read_csv("data/customers.csv")
+df = pd.read_csv("/content/customers.csv")
+``
