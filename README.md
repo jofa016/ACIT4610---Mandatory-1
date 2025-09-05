@@ -25,9 +25,9 @@ This repository solves small/medium/large Vehicle Routing Problem (VRP) instance
     * ipython (for display styling)
 Install (local):
 
-
-> pip install numpy pandas matplotlib seaborn ipython
-
+<code>
+pip install numpy pandas matplotlib seaborn ipython
+</code>
 
 
 ## Quick start
@@ -35,9 +35,9 @@ Install (local):
 2. In the notebook, make sure you load with a relative path that works for you:
 
 
-``
-df = pd.read_csv("customers.csv")  # not "/customers.csv"
-df = pd.read_csv("./customers.csv")
-df = pd.read_csv("data/customers.csv")
-df = pd.read_csv("/content/customers.csv")
-``
+<code>
+df = pd.read_csv("customers.csv")  # not "/customers.csv" <br>
+df = pd.read_csv("./customers.csv") <br>
+df = pd.read_csv("data/customers.csv")<br>
+df = pd.read_csv("/content/customers.csv") <br>
+</code>
