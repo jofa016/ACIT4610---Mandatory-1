@@ -190,7 +190,7 @@ n_runs = 20
 * Add 2-opt per route; compare with OR-Tools for a baseline.
 
 ## Contribution:
-We started working seperately on one scenario each for understanding and as a form of brainstorming and sat together to discuss and combined them to one `_MAIN_CODE_BHF_` file wich will be the final delivery file.
+The project was done in collaboration with the four members of the group. In the initial phase, the tasks were devided between the members, thereafter in each of the following sessions the codes were reviewed together and then worked on by coordinating via Discord and sharing files on GitHub. Each member contributed to the coding, testing and report written, as well as to the compilation and review of the code by the end of the project.
 
 ## Members:
 * [Joanne T. Farstad](https://github.com/jofa016) 
