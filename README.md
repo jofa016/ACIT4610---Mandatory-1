@@ -19,12 +19,11 @@ It then evaluates solution quality, convergence, runtime, and consistency across
     * numpy
     * pandas
     * matplotlib
-    * seaborn (optional but used)
     * ipython (for display styling)
 
 Install (local):
 ```sh
-pip install numpy pandas matplotlib seaborn ipython
+pip install numpy pandas matplotlib ipython
 ```
 
 ## Data Format (CSV)
