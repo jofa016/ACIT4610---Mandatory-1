@@ -1,9 +1,10 @@
 # **ACIT 4610 – Mid-Term Portfolio Project 1**
 ## Vehicle Routing Problem (VRP) with a Quantum-Inspired Genetic Algorithm
 ### Group 4
-This repository solves small/medium/large Vehicle Routing Problem (VRP) instances using Genetic Algorithm (GA) with a “quantum-inspired” split representation:
+This repository solves small/medium/large Vehicle Routing Problem (VRP) instances using Genetic Algorithm (GA) with a “**quantum-inspired**” split representation:
 * Genome: a permutation of customers
-* route cuts: a companion boolean vector that decides where to split the permutation into routes <br>
+* route cuts: a companion boolean vector that decides where to split the permutation into routes
+<br>
 It then evaluates solution quality, convergence, runtime, and consistency across multiple runs and parameter sets.
 
 ## Content
@@ -27,7 +28,8 @@ pip install numpy pandas matplotlib seaborn ipython
 
 ## Data Format (CSV)
 The code uses a csv with the folowing columns:
-> id,x,y <br>
+> id,x,y 
+<br>
 In wich id represent the costumers id, and x, y the coordinates of their homes/location. And by deicussion it got decided that the center of all would be the depot location.
 
 
@@ -67,7 +69,7 @@ df = pd.read_csv("/content/customers.csv")
 - **Fitness:** Shorter total distance (depot → customers → depot per route) is better. The GA maximizes **−distance**; optional penalties can discourage capacity or route-count violations.
 
 ## Implementation notes:
-- **Instances**
+### **Instances**
 We build several VRP instances (Small/Medium/Large) within the numbers provided in the task and having two different instances within each sizes.
 
 ```sh
@@ -78,7 +80,7 @@ class VRPInstance:
         self.vehicles = vehicles
 ```
 
-- **Representation**
+### **Representation**
 Each solution is an `individual(perm, cuts)`
 * `perm`: permutation of costumers IDs(1..N)
 * `cuts`: sorted index by where we split perm into routes(size = V-1)
@@ -88,27 +90,27 @@ class Individual(NamedTuple):
     perm: List[int]
     cuts: List[int]
 ```
-- **Decoding and cost**
+### **Decoding and cost**
     * Decoding routes by slicing `perm` at `cuts`; compute route cost as depot → route → depot.
 
 ```sh
 def decode_routes(ind: Individual, V:int) -> List[List[int]]:
 ```
-    *  Route/total distance:
+*  Route/total distance:
 ```sh   
 def route_distance(route: List[int], dmat) -> float: 
 def total_distance(ind: Individual, dmat, V: int) -> float:
 ```   
 
-- **Fitness**
-We want to minimize total distance, while the GA maximizes fitness; `fitness = −(total distance + penalties)` maximizing fitness ≡ minimizing distance.
+### **Fitness**
+We want to minimize total distance, while the GA maximizes fitness; `fitness = −(total distance + penalties)` maximizing fitness = minimizing distance.
 
 ```sh
 def fitness(ind: Individual, dmat, V: int) -> float:
     return -total_distance(ind, dmat, V)
 ```
 
-- **Selection**
+### **Selection**
 k-tournment by default (k=3); sample 3 candidates and keep the best; rank-based selection is also available (samples by rank, not raw fitness).
 
 ```sh
@@ -117,7 +119,7 @@ def tournament_selection_idx(fitnesses: List[float], k: int, rng: random.Random)
     return max(cand, key=lambda i: fitnesses[i])
 ```
 
-- **Crossover**
+### **Crossover**
 * **Permutation (order-preserving OX):** keeps the relative visit order intact.
 * **Splits (element-wise blend + repair):** mixes cut positions, then repairs to ensure exactly **V−1** valid cuts.
 
@@ -133,7 +135,7 @@ def cuts_crossover(c1: List[int], c2: List[int], N: int, V: int, rng: random.Ran
 def repair_cuts(cuts: List[int], N: int, V:int, rng: random.Random) -> List[int]:
 ```
 
-- **Mutation**
+### **Mutation**
 * **Permutation:** swap or insert a random customer.
 * **Splits:** bit-flip or ±1 jitter on a cut, followed by `repair_cuts`.
 
@@ -145,8 +147,7 @@ def jitter_mutation_cuts(cuts: List[int], N:int, V:int, p_mut: float, rng: rando
     q = cuts[:]
 ```
 
-
-- **GA engine (loop)**
+### **GA engine (loop)**
 * Initialize population → repeat **{selection → crossover → mutation → evaluation}** for the set number of generations.
 * **Elitism (optional):** copy top-K (~1–5%) directly into the next generation.
 
@@ -154,12 +155,12 @@ def jitter_mutation_cuts(cuts: List[int], N:int, V:int, p_mut: float, rng: rando
 best_ind, best_dist, best_hist = genetic_algorithm(dmat, N=len(instance.customers), V=instance.vehicles, pop_size=120, generations=20, k_tourn=3, pc=0.9, pm_perm=0.2, pm_cuts=0.2, seed=42, log_convergence=True)
 ```
 
-- **Visualization**
+### **Visualization**
 ```sh
 def plot_routes(ind, customers, depot, n_vehicles, number_points=False, title=None):
 ```
 
-- Batch experiments and metrics:
+####  Batch experiments and metrics:
 * Parameter sets:
 ```sh
 param_sets = {
@@ -179,20 +180,19 @@ n_runs = 20
     * `master_results_all_info.csv` (joined metrics table)
     * `table_solution_quality.csv`,`table_convergence_rate.csv`,`table_computational_efficiency.csv`
 
-- **Reproducibility & Performance**
+### **Reproducibility & Performance**
 * Seeds: set `seed` for repeatability; use `n_runs > 1` to report mean ± std.
 * Runtime: fitness evaluation dominates; precompute distance matrix; start with smaller `pop_size/generations` and scale.
 
-- **Known Limitations & Extensions**
+### **Known Limitations & Extensions**
 *  Capacity handling is basic; add capacity-aware splitting + greedy repair if needed.
 * Add 2-opt per route; compare with OR-Tools for a baseline.
 
-## Contributing:
-* We started working seperately on one scenario each for understanding and as a form of brainstorming and sat together to discuss and combined them to one _MAIN_CODE_BHF_ file wich will be the final delivery file.
+## Contribution:
+We started working seperately on one scenario each for understanding and as a form of brainstorming and sat together to discuss and combined them to one _MAIN_CODE_BHF_ file wich will be the final delivery file.
 
 ## Members:
-<a href="https://github.com/jofa016/ACIT4610---Mandatory-1/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=jofa016/ACIT4610---Mandatory-1" />
-</a>
-
-Made with [contrib.rocks](https://contrib.rocks).
+* [Joanne T. Farstad](https://github.com/jofa016) 
+* [Robel W. Ghebremedhin](https://github.com/rabrie10)
+* [Susrita Khadka](https://github.com/susritak)
+* [Karoline Nielsen](https://github.com/karroni)
