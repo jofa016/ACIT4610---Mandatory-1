@@ -4,7 +4,8 @@
 This repository solves small/medium/large Vehicle Routing Problem (VRP) instances using Genetic Algorithm (GA) with a “**quantum-inspired**” split representation:
 * Genome: a permutation of customers
 * route cuts: a companion boolean vector that decides where to split the permutation into routes
-<br>It then evaluates solution quality, convergence, runtime, and consistency across multiple runs and parameter sets.
+
+It then evaluates solution quality, convergence, runtime, and consistency across multiple runs and parameter sets.
 
 ## Content
 * README.md
@@ -28,7 +29,8 @@ pip install numpy pandas matplotlib ipython
 ## Data Format (CSV)
 The code uses a csv with the folowing columns:
 > id,x,y 
-<br>In wich id represent the costumers id, and x, y the coordinates of their homes/location. And by deicussion it got decided that the center of all would be the depot location.
+
+In wich id represent the costumers id, and x, y the coordinates of their homes/location. And by deicussion it got decided that the center of all would be the depot location.
 
 
 
