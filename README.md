@@ -30,7 +30,7 @@ pip install numpy pandas matplotlib ipython
 The code uses a csv with the folowing columns:
 > id,x,y 
 
-In wich id represent the costumers id, and x, y the coordinates of their homes/location. And by deicussion it got decided that the center of all would be the depot location.
+In wich id represent the costumers id, and x, y the coordinates of their homes/location. And by discussion it got decided that the center of all would be the depot location.
 
 
 
