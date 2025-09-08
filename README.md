@@ -11,6 +11,7 @@ It then evaluates solution quality, convergence, runtime, and consistency across
 * README.md
 * MAIN_CODE_BHF.ipynb # final, executable notebook
 * customers.csv # data of costumers locations
+* results.csv
 
 ## Requirements
 * Python 3.8+
@@ -52,11 +53,11 @@ df = pd.read_csv("/content/customers.csv")
 ```
 
 3. Run all cells. The notebook will produce:
-* 
-* 
-* 
-* 
-* 
+* results.csv
+* table_solution_quality.csv
+* table_computational_efficiency.csv
+* table_convergence_rate.csv
+ 
 
 ## GA Overview:
 - **Representation:** A customer **order** (permutation) + a **cut list / split vector** that marks where each new vehicle route starts.
@@ -91,7 +92,7 @@ class Individual(NamedTuple):
     cuts: List[int]
 ```
 ### **Decoding and cost**
-    * Decoding routes by slicing `perm` at `cuts`; compute route cost as depot → route → depot.
+* Decoding routes by slicing `perm` at `cuts`; compute route cost as depot → route → depot.
 
 ```sh
 def decode_routes(ind: Individual, V:int) -> List[List[int]]:
@@ -144,7 +145,6 @@ def swap_mutation_perm(p: List[int], p_mut:float, rng: random.Random) -> List[in
 ```
 ```sh
 def jitter_mutation_cuts(cuts: List[int], N:int, V:int, p_mut: float, rng: random.Random) -> List[int]:
-    q = cuts[:]
 ```
 
 ### **GA engine (loop)**
@@ -156,6 +156,7 @@ best_ind, best_dist, best_hist = genetic_algorithm(dmat, N=len(instance.customer
 ```
 
 ### **Visualization**
+Visualize routes for each instance
 ```sh
 def plot_routes(ind, customers, depot, n_vehicles, number_points=False, title=None):
 ```
@@ -176,9 +177,10 @@ n_runs = 20
 * For each instance × parameter set × seed, we record: Best distance, runtime, history (for convergence).
  
 * saved objects:
-    * `results.csv` (per‑combo summary)
-    * `master_results_all_info.csv` (joined metrics table)
-    * `table_solution_quality.csv`,`table_convergence_rate.csv`,`table_computational_efficiency.csv`
+    * `results.csv` (summary)
+    * `table_solution_quality.csv`
+    * `table_convergence_rate.csv`
+    * `table_computational_efficiency.csv`
 
 ### **Reproducibility & Performance**
 * Seeds: set `seed` for repeatability; use `n_runs > 1` to report mean ± std.
@@ -189,7 +191,7 @@ n_runs = 20
 * Add 2-opt per route; compare with OR-Tools for a baseline.
 
 ## Contribution:
-We started working seperately on one scenario each for understanding and as a form of brainstorming and sat together to discuss and combined them to one _MAIN_CODE_BHF_ file wich will be the final delivery file.
+We started working seperately on one scenario each for understanding and as a form of brainstorming and sat together to discuss and combined them to one `_MAIN_CODE_BHF_` file wich will be the final delivery file.
 
 ## Members:
 * [Joanne T. Farstad](https://github.com/jofa016) 
