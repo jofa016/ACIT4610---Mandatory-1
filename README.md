@@ -1,6 +1,6 @@
 # **ACIT 4610 – Mid-Term Portfolio Project 1**
 ## Vehicle Routing Problem (VRP) with a Quantum-Inspired Genetic Algorithm
-### Group 4
+### Group 3
 This repository solves small/medium/large Vehicle Routing Problem (VRP) instances using Genetic Algorithm (GA) with a “**quantum-inspired**” split representation:
 * Genome: a permutation of customers
 * route cuts: a companion boolean vector that decides where to split the permutation into routes
